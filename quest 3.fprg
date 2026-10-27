@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="APL121 BD1 Sedev 1"/>
+        <attribute name="authors" value="student"/>
+        <attribute name="about" value="&#1058;&#1101;&#1075;&#1096;, &#1089;&#1086;&#1085;&#1076;&#1075;&#1086;&#1081;&#1085; &#1257;&#1076;&#1257;&#1088;"/>
+        <attribute name="saved" value="2026-10-27 06:22:32 PM"/>
+        <attribute name="created" value="SFVBV0VJO1NVWlVNRTsyMDI2LTEwLTI3OzA1OjUyOjEyIFBNOzIyMTk="/>
+        <attribute name="edited" value="SFVBV0VJO1NVWlVNRTsyMDI2LTEwLTI3OzA2OjIyOjMyIFBNOzE7MjMyNw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="today" type="Integer" array="False" size=""/>
+            <declare name="car" type="Integer" array="False" size=""/>
+            <declare name="digit" type="Integer" array="False" size=""/>
+            <declare name="day" type="Integer" array="False" size=""/>
+            <declare name="count" type="Integer" array="False" size=""/>
+            <declare name="bestCount" type="Integer" array="False" size=""/>
+            <declare name="bestCar" type="Integer" array="False" size=""/>
+            <do expression="today &lt; 1 or today &gt; 7">
+                <output expression="&quot;unuudriin garag oruulna uu (1=davaa ... 7=nyam): &quot;" newline="False"/>
+                <input variable="today"/>
+                <if expression="today &lt; 1 or today &gt; 7">
+                    <then>
+                        <output expression="&quot;buuruu utga bn bro :0 !!! 1-7 hoorond too oruulna uu&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+            </do>
+            <if expression="today &lt;= 5">
+                <then>
+                    <output expression="&quot;unuudr: ajliin udur&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="today == 6">
+                        <then>
+                            <output expression="&quot;unuudur: byamba&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;unuudur: nyam&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <assign variable="bestCount" expression="-1"/>
+            <assign variable="bestCar" expression="0"/>
+            <for variable="car" start="1" end="3" direction="inc" step="1">
+                <do expression="digit &lt; 0 or digit &gt; 9">
+                    <output expression="&quot;mashin &quot; &amp; car &amp; &quot;-iin dugaariin suuliin oron (0-9): &quot;" newline="False"/>
+                    <input variable="digit"/>
+                    <if expression="digit &lt; 0 or digit &gt; 9">
+                        <then>
+                            <output expression="&quot;buruu utga bn bro :0 !!! 0-9 hoorond too oruulna uu.&quot;" newline="True"/>
+                        </then>
+                        <else/>
+                    </if>
+                </do>
+                <output expression="&quot;mashin &quot; &amp; car &amp; &quot; (suuliin oron &quot; &amp; digit &amp; &quot;)&quot;" newline="True"/>
+                <for variable="day" start="1" end="7" direction="inc" step="1">
+                    <if expression="day % 2 == digit % 2">
+                        <then>
+                            <output expression="day &amp; &quot; - yavj bolno&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="day &amp; &quot; - yavj bolohgui&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </for>
+                <assign variable="count" expression="CountDays(digit)"/>
+                <output expression="&quot;niit: &quot; &amp; count &amp; &quot; udur&quot;" newline="True"/>
+                <if expression="today % 2 == digit % 2">
+                    <then>
+                        <output expression="&quot;unuudur yavj bolno :&gt;&quot;" newline="True"/>
+                    </then>
+                    <else>
+                        <output expression="&quot;unuudur yvj bolohgui :&lt;&quot;" newline="True"/>
+                    </else>
+                </if>
+                <if expression="count &gt; bestCount">
+                    <then>
+                        <assign variable="bestCount" expression="count"/>
+                        <assign variable="bestCar" expression="car"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <output expression="&quot;hamgiin olon udur yavj boloh mashin: mashin &quot; &amp; bestCar &amp; &quot; (7 honogt &quot; &amp; bestCount &amp; &quot; udur)&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="CountDays" type="Integer" variable="total">
+        <parameters>
+            <parameter name="digit" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="total" type="Integer" array="False" size=""/>
+            <declare name="d" type="Integer" array="False" size=""/>
+            <assign variable="total" expression="0"/>
+            <for variable="d" start="1" end="7" direction="inc" step="1">
+                <if expression="d % 2 == digit % 2">
+                    <then>
+                        <assign variable="total" expression="total + 1"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
