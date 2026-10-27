@@ -62,3 +62,4 @@ int main(void)
     printf("Hamgiin olon udur yavah mashin: Mashin %d (%d udur)\n", bestCar, bestCount);
     return 0;
 }
+
